@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+
+
+<div class="container-fluid">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:utext="${user.id}">id</td>
+            <td th:utext="${user.name}">name</td>
+            <td th:utext="${user.lastName}">lastName</td>
+            <td>
+                <form th:method="GET" th:action="@{/user/{id}/edit(id=${user.getId()})}">
+                    <button type="submit" class="btn btn-primary btn-lg btn-info btn-sm btn-block">Edit</button>
+                </form>
+            </td>
+            <td>
+                <form th:method="DELETE" th:action="@{/user/{id}/delete(id=${user.getId()})}">
+                    <button type="submit" class="btn btn-primary btn-lg btn-danger btn-sm btn-block">Delete</button>
+                </form>
+            </td>
+
+        </tr>
+
+        <tr>
+            <th>New</th>
+
+            <form th:method="POST" th:action="@{/user/}" th:object="${newUser}">
+                <th><input type="text" class="form-control form-control-sm" placeholder="First Name" th:field="*{name}" id="name"/></th>
+                <th><input type="text" class="form-control form-control-sm" placeholder="Second Name" th:field="*{lastName}" id="lastName"/></th>
+                <th><button type="submit" class="btn btn-primary btn-lg btn-success btn-sm btn-block">Add user</button> </th>
+                <th> </th>
+            </form>
+
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

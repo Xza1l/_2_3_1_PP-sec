@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--  форма метод пост форма сама создает объект user-->
+<!--  Алишев -->
+<!--  Эта форма будет посылать данные на страницу / -->
+<form th:method="POST" th:action="@{/user/}" th:object="${user}">
+
+  <label for="name">Name</label>
+  <input type="text" th:field="*{name}" id="name"/>
+
+  <br/>
+  <label for="lastName">Last name</label>
+  <input type="text" th:field="*{lastName}" id="lastName"/>
+
+  <br/>
+  <input type="submit" value="Add new user"/>
+
+</form>
+
+
+</body>
+</html>
